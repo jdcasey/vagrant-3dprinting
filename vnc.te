@@ -1,0 +1,14 @@
+
+module vnc 1.0;
+
+require {
+	type user_home_t;
+	type init_t;
+	class file { open read unlink };
+}
+
+#============= init_t ==============
+allow init_t user_home_t:file open;
+
+#!!!! This avc is allowed in the current policy
+allow init_t user_home_t:file { read unlink };
