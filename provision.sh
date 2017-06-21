@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -x
+dnf clean all
 dnf -y --setopt=deltarpm=false update
 dnf -y --setopt=deltarpm=false install @xfce-desktop-environment firefox freecad slic3r openscad tigervnc-server
 
