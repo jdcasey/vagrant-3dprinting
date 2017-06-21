@@ -18,11 +18,12 @@ Vagrant.configure("2") do |config|
   end
   config.vm.network "forwarded_port", guest: 5901, host_ip: "0.0.0.0", host: 6901
 
-  config.vm.provision :shell, :inline => <<-SCRIPT
-      if [ "X#{nfs}" != "X" ]; then
-          echo "#{nfs}:/export/3d-projects /mnt/3d-projects nfs defaults 0 0" >> /etc/fstab
-      fi
-  SCRIPT
+  if nfs
+      config.vm.provision :shell, :inline => <<-SCRIPT
+              echo "#{nfs}:/export/3d-projects /mnt/3d-projects nfs defaults 0 0" >> /etc/fstab
+              mount /mnt/3d-projects
+      SCRIPT
+  end
 
   config.vm.provision :shell, :path => 'provision.sh'
 end
