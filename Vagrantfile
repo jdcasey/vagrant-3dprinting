@@ -10,10 +10,13 @@ puts "Bridge device: '#{bridge}'"
 Vagrant.configure("2") do |config|
   config.vm.box = "fedora/25-cloud-base"
 
-  if bridge != ''
-  	config.vm.network "public_network", bridge: bridge, device: bridge, adapter: 1
+  if bridge
+  	config.vm.network :public_network,
+          :dev => bridge,
+          :mode => :bridge
+          #:type => :bridge
   end
-  config.vm.network "forwarded_port", guest: 5901, host: 6901
+  config.vm.network "forwarded_port", guest: 5901, host_ip: "0.0.0.0", host: 6901
 
   config.vm.provision :shell, :inline => <<-SCRIPT
       if [ "X#{nfs}" != "X" ]; then
