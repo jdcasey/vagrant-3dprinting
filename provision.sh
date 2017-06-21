@@ -16,6 +16,6 @@ systemctl daemon-reload
 cp -rf /vagrant/vnc-config /home/vagrant/.vnc
 chown -R vagrant:vagrant /home/vagrant/
 
-systemctl enable vnc
-systemctl start vnc
+systemctl enable vncserver@:1
+systemctl start vncserver@:1
 

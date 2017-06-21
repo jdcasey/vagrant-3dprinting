@@ -39,10 +39,10 @@ Type=forking
 User=vagrant
 
 # Clean any existing files in /tmp/.X11-unix environment
-ExecStartPre=-/usr/bin/vncserver -kill :1
-ExecStart=/usr/bin/vncserver :1
-PIDFile=/home/vagrant/.vnc/localhost.localdomain:1.pid
-ExecStop=-/usr/bin/vncserver -kill :1
+ExecStartPre=-/usr/bin/vncserver -kill %i
+ExecStart=/usr/bin/vncserver %i
+PIDFile=/home/vagrant/.vnc/localhost%i.pid
+ExecStop=-/usr/bin/vncserver -kill %i
 
 [Install]
 WantedBy=multi-user.target
