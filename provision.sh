@@ -11,12 +11,14 @@ cp /vagrant/*.service /etc/systemd/system
 
 systemctl daemon-reload
 
-cp -rf /vagrant/vnc-config /home/vagrant/.vnc
-chown -R vagrant:vagrant /home/vagrant/
+groupadd jdcasey
+useradd -u 1000 -g jdcasey -G wheel jdcasey
+echo 'vagrant' | passwd --stdin jdcasey
 
-usermod vagrant -a -G wheel 
-echo 'vagrant' | passwd --stdin vagrant
-echo 'vagrant' | vncpasswd -f > /home/vagrant/.vnc/passwd
+cp -rf /vagrant/vnc-config /home/jdcasey/.vnc
+chmod 700 /home/jdcasey/.vnc
+chmod 600 /home/jdcasey/.vnc/*
+chown -R jdcasey:jdcasey /home/jdcasey/
 
 systemctl enable vncserver@:1
 systemctl start vncserver@:1
