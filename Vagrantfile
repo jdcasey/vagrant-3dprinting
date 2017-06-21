@@ -21,6 +21,7 @@ Vagrant.configure("2") do |config|
   if nfs
       config.vm.provision :shell, :inline => <<-SCRIPT
               echo "#{nfs}:/export/3d-projects /mnt/3d-projects nfs defaults 0 0" >> /etc/fstab
+              mkdir -p /mnt/3d-projects
               mount /mnt/3d-projects
       SCRIPT
   end
