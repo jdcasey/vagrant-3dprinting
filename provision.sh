@@ -11,8 +11,6 @@ cp /vagrant/*.service /etc/systemd/system
 
 systemctl daemon-reload
 
-groupadd jdcasey
-useradd -u 1000 -g jdcasey -G wheel jdcasey
 echo 'vagrant' | passwd --stdin jdcasey
 
 cp -rf /vagrant/vnc-config /home/jdcasey/.vnc
