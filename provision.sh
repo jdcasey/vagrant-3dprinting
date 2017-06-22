@@ -16,6 +16,7 @@ echo 'vagrant' | passwd --stdin jdcasey
 cp -rf /vagrant/vnc-config /home/jdcasey/.vnc
 chmod 700 /home/jdcasey/.vnc
 chmod 600 /home/jdcasey/.vnc/*
+chmod 700 /home/jdcasey/.vnc/xstartup
 chown -R jdcasey:jdcasey /home/jdcasey/
 
 systemctl enable vncserver@:1

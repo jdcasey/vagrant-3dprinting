@@ -10,6 +10,11 @@ bridge=ENV['VAGRANT_BRIDGE']
 Vagrant.configure("2") do |config|
   config.vm.box = "fedora/25-cloud-base"
 
+  config.vm.provider :libvirt do |libvirt|
+    libvirt.cpus = 4
+    libvirt.memory = 4096
+  end
+
   if bridge
   	config.vm.network :public_network,
           :dev => bridge,
